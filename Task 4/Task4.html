@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Task 4</title>
+</head>
+
+<body>
+	<p> <label>Ширина</label>
+        <input id="input1" class="text" size="20" value=100> </p>
+	<p> <label>Высота</label>
+        <input id="input2" class="text" size="20" value=100> </p>
+        <p> <button class="btn">Ок</button> </p>
+	<p> <label id="output1"></label></p>
+	<img id="output"/>
+</body>
+
+<script>
+const btn = document.querySelector('.btn');
+
+btn.addEventListener('click', () => {
+  const value1 = +document.getElementById('input1').value;
+  const value2 = +document.getElementById('input2').value;
+
+  let str = document.getElementById('output1');
+  str.textContent = '';
+  if (!(value1 >= 100 && value1 <= 300 && value2 >= 100 && value2 <= 300)) {
+    str.textContent = 'Одно из чисел вне диапазона от 100 до 300';
+    return;
+  }
+  fetch(`https://picsum.photos/${value1}/${value2}`)
+    .then((response) => {
+      document.getElementById('output').src = response.url;
+    });
+
+});
+</script>
+
+</html>

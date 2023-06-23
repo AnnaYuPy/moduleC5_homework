@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Task 3</title>
+</head>
+
+<body>
+	<p> <label>Введите число</label>
+        <input id="limit" class="text" size="20"> </p>
+        <p> <button class="btn">Ок</button> </p>
+	<p> <label id="output1"></label></p>
+	<img id="output" />
+</body>
+
+<script>
+	const resultNode = document.querySelector('.output');
+	const btn = document.querySelector('.btn');
+	btn.addEventListener('click', () => {
+		const value = document.getElementById('limit').value;
+		let str = document.getElementById('output1');
+		str.textContent = "";
+		if (!(value >= 1 && value <= 10)) {
+			str.textContent = "Число вне диапазона от 1 до 10";
+			return;
+		}
+		else {
+			const xhr = new XMLHttpRequest();
+			xhr.onload = function() {
+				console.log('Статус: ${xhr.status}; Результат: ${xhr.response}')
+			};
+			xhr.onerror = function() {
+				console.log('Ошибка запроса');
+			};			
+			document.getElementById('output').src = (xhr.open("get", "https://picsum.photos/v2/list?limit=${value1}", true));
+			xhr.send();
+        	}
+	});
+</script>
+
+</html>
